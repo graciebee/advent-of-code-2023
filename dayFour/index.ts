@@ -2,6 +2,7 @@ import { PathOrFileDescriptor } from "fs";
 import { parseInput } from "../utilities/parser";
 
 export function run(filename: PathOrFileDescriptor) {
+  const start = Date.now();
   const arr = parseInput(filename);
   const numberArray = getNumbers(arr);
 
@@ -11,12 +12,11 @@ export function run(filename: PathOrFileDescriptor) {
 
     const matches: number[] = [];
     while (numbers.length) {
-      const num = numbers.pop() || 0;
+      const num = numbers.pop()!;
       while (num <= winningNumbers[winningNumbers.length - 1]) {
         const winningNum = winningNumbers.pop();
         if (num === winningNum) {
           matches.push(winningNum);
-          break;
         }
       }
     }
@@ -49,6 +49,7 @@ export function run(filename: PathOrFileDescriptor) {
 
   const partTwo = processed.reduce((acc, num) => acc + num);
   console.log("Part 2:", partTwo);
+  console.log(`Execution time: ${Date.now() - start}ms`);
 }
 
 function getNumbers(arr: string[]): number[][][] {

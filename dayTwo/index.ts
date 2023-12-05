@@ -14,6 +14,7 @@ interface Bag {
 }
 
 export function run(filename: PathOrFileDescriptor) {
+  const start = Date.now();
   const arr = parseInput(filename);
 
   const bags = parseBags(arr);
@@ -29,6 +30,7 @@ export function run(filename: PathOrFileDescriptor) {
   const partTwo = powers.reduce((a, b) => a + b);
 
   console.log("Part 2: ", partTwo);
+  console.log(`Execution time: ${Date.now() - start}ms`);
 }
 
 function parseBags(input: string[]): Bag[] {

@@ -2,6 +2,7 @@ import { PathOrFileDescriptor } from "fs";
 import { parseInput } from "../utilities/parser";
 
 export function run(filename: PathOrFileDescriptor) {
+  const start = Date.now();
   const arr = parseInput(filename);
 
   const numberArray = arr.map((calibrationText) => {
@@ -23,6 +24,7 @@ export function run(filename: PathOrFileDescriptor) {
   const partTwo = spelledNumberArray.reduce((a, b) => a + b);
 
   console.log("Part two: ", partTwo);
+  console.log(`Execution time: ${Date.now() - start}ms`);
 }
 
 function returnFirstDigit(text: string[]): string {

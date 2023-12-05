@@ -15,6 +15,7 @@ interface Symbol {
 }
 
 export function run(filename: PathOrFileDescriptor) {
+  const start = Date.now();
   const arr = parseInput(filename);
 
   const [symbols, gears, engineNumbers] = parseEngine(arr);
@@ -28,6 +29,7 @@ export function run(filename: PathOrFileDescriptor) {
 
   const partTwo = gearRatios.reduce((acc, ratio) => acc + ratio);
   console.log("Part 2: ", partTwo);
+  console.log(`Execution time: ${Date.now() - start}ms`);
 }
 
 export function getGearRatios(
